@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رِواق العربية | الأستاذ محمد هاشم</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d1714;color:#f7f0df;font-family:Arial,sans-serif;line-height:1.9}
+header{text-align:center;padding:38px 16px;background:linear-gradient(140deg,#183d30,#0d1714);border-bottom:1px solid #b99a55}
+h1,h2,h3{color:#dfc17a}
+header h1{font-size:35px;margin:0}
+header p{margin:5px;color:#e6d9b9}
+main{max-width:850px;margin:auto;padding:20px}
+section,.card{background:#15231e;border:1px solid #34483b;border-radius:16px;padding:18px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
+button,.btn{background:#c6a85e;color:#142019;border:0;border-radius:10px;padding:11px 15px;font-size:16px;cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block;margin:4px}
+button:hover,.btn:hover{background:#e3ca89}
+button.secondary{background:#263c32;color:#f7f0df;border:1px solid #9b854e}
+.hidden{display:none}
+video,iframe{width:100%;border:0;border-radius:12px;aspect-ratio:16/9}
+.question{border-top:1px solid #34483b;padding:12px 0}
+.option{display:block;width:100%;text-align:right;background:#22362d;color:#fff;border:1px solid #455a4b;margin:7px 0}
+#result{font-weight:bold;color:#e2c878}
+footer{text-align:center;color:#c7bda5;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div>✦ لغتنا هويتنا ✦</div>
+<h1>رِواق العربية</h1>
+<p>منصة الأستاذ محمد هاشم التعليمية</p>
+<p>نتعلّم العربية فهمًا، ونتذوّقها بيانًا وأدبًا.</p>
+</header>
+<main>
+<section id="home">
+<h2>أهلًا بك في رِواق العربية</h2>
+<p>رحلتك لفهم اللغة العربية تبدأ من هنا. اختَر مرحلتك الدراسية، ثم صفّك ومادتك، وتعلّم خطوة بخطوة.</p>
+<div class="grid">
+<button onclick="showStage('prep')">المرحلة الإعدادية</button>
+<button onclick="showStage('sec')">المرحلة الثانوية</button>
+</div>
+</section>
+
+<section id="prep" class="hidden">
+<h2>المرحلة الإعدادية</h2>
+<div class="grid">
+<button class="secondary" onclick="showGrade('prep','الأول الإعدادي')">الأول الإعدادي</button>
+<button class="secondary" onclick="showGrade('prep','الثاني الإعدادي')">الثاني الإعدادي</button>
+<button class="secondary" onclick="showGrade('prep','الثالث الإعدادي')">الثالث الإعدادي</button>
+</div>
+<div id="prep-grade"></div>
+</section>
+
+<section id="sec" class="hidden">
+<h2>المرحلة الثانوية</h2>
+<div class="grid">
+<button class="secondary" onclick="showGrade('sec','الأول الثانوي')">الأول الثانوي</button>
+<button class="secondary" onclick="showGrade('sec','الثاني الثانوي')">الثاني الثانوي</button>
+<button class="secondary" onclick="showGrade('sec','الثالث الثانوي')">الثالث الثانوي</button>
+</div>
+<div id="sec-grade"></div>
+</section>
+
+<section id="lesson" class="hidden">
+<button class="secondary" onclick="backStages()">↩ رجوع</button>
+<h2 id="lesson-title">درس نموذجي: المبتدأ والخبر</h2>
+<p id="grade-name"></p>
+<h3>فيديو الدرس</h3>
+<p>شاهد شرح الأستاذ محمد هاشم على يوتيوب:</p>
+<a class="btn" href="https://youtu.be/OhgY0z9jics" target="_blank" rel="noopener">مشاهدة الدرس على يوتيوب</a>
+<h3>ملخص الدرس: المبتدأ والخبر</h3>
+<ul>
+<li>الجملة الاسمية تبدأ غالبًا باسم، وتتكوّن في أصلها من مبتدأ وخبر.</li>
+<li>المبتدأ اسم مرفوع نتحدث عنه، والخبر يتمّم المعنى.</li>
+<li>مثال: «العلمُ نورٌ»؛ العلمُ مبتدأ، ونورٌ خبر.</li>
+<li>قد يأتي الخبر مفردًا، أو جملة، أو شبه جملة.</li>
+<li>مثال: «الطالبُ يذاكرُ»؛ جملة «يذاكر» في محل رفع خبر.</li>
+<li>مثال: «الكتابُ على المكتبِ»؛ شبه الجملة متعلّق بخبر محذوف.</li>
+</ul>
+<h3>اختبر فهمك</h3>
+<p>اختر الإجابة الصحيحة لكل سؤال ثم اضغط «تصحيح الإجابات».</p>
+<div id="quiz"></div>
+<button onclick="checkQuiz()">تصحيح الإجابات</button>
+<p id="result"></p>
+</section>
+<section>
+<h2>رسالة المنصة</h2>
+<p>رِواق العربية مساحة للتعلّم والمراجعة، تجمع بين الشرح والتطبيق؛ لتكون اللغة العربية أقرب إلى الفهم والإتقان.</p>
+</section>
+</main>
+<footer>رِواق العربية · منصة الأستاذ محمد هاشم التعليمية</footer>
+<script>
+const questions=[
+{q:"في جملة «العلمُ نورٌ»، ما المبتدأ؟",a:["نور","العلم","الجملة كلها"],c:1,e:"العلمُ هو الاسم الذي نتحدث عنه، فهو المبتدأ."},
+{q:"ما الخبر في جملة «السماءُ صافيةٌ»؟",a:["السماء","صافية","السماء صافية"],c:1,e:"صافيةٌ خبر المبتدأ السماءُ."},
+{q:"نوع الخبر في «الطالبُ يذاكرُ»؟",a:["مفرد","جملة فعلية","شبه جملة"],c:1,e:"يذاكرُ جملة فعلية في محل رفع خبر."},
+{q:"نوع الخبر في «الكتابُ على المكتبِ»؟",a:["مفرد","جملة اسمية","شبه جملة"],c:2,e:"على المكتب شبه جملة متعلّقة بخبر محذوف."},
+{q:"الأصل في المبتدأ والخبر أن يكونا:",a:["مرفوعين","منصوبين","مجرورين"],c:0,e:"الأصل في المبتدأ والخبر الرفع."}
+];
+const quiz=document.getElementById("quiz");
+questions.forEach((q,i)=>{
+let d=document.createElement("div");d.className="question";
+d.innerHTML="<strong>"+(i+1)+". "+q.q+"</strong>";
+q.a.forEach((a,j)=>{d.innerHTML+='<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"> '+a+'</label>'});
+quiz.appendChild(d);
+});
+function showStage(id){document.getElementById("prep").classList.add("hidden");document.getElementById("sec").classList.add("hidden");document.getElementById("lesson").classList.add("hidden");document.getElementById(id).classList.remove("hidden");document.getElementById(id).scrollIntoView({behavior:"smooth"});}
+function showGrade(stage,grade){
+let box=document.getElementById(stage+"-grade");
+box.innerHTML="<h3>"+grade+"</h3><p>اختر المادة لعرض الدرس النموذجي المتاح حاليًا.</p><div class='grid'><button onclick=\"openLesson('النحو','"+grade+"')\">النحو</button><button onclick=\"openLesson('البلاغة','"+grade+"')\">البلاغة</button><button onclick=\"openLesson('الأدب','"+grade+"')\">الأدب</button></div>";
+box.scrollIntoView({behavior:"smooth"});
+}
+function openLesson(subject,grade){
+document.getElementById("lesson-title").textContent=subject==="النحو"?"درس نموذجي: المبتدأ والخبر":subject+" — قريبًا";
+document.getElementById("grade-name").textContent="الصف: "+grade+" · المادة: "+subject;
+document.getElementById("lesson").classList.remove("hidden");
+document.getElementById("lesson").scrollIntoView({behavior:"smooth"});
+}
+function backStages(){document.getElementById("lesson").classList.add("hidden");document.getElementById("home").scrollIntoView({behavior:"smooth"});}
+function checkQuiz(){
+let score=0,answered=0,details="";
+questions.forEach((q,i)=>{
+let selected=document.querySelector('input[name="q'+i+'"]:checked');
+if(selected){answered++;if(Number(selected.value)===q.c)score++;}
+details+=(i+1)+". "+q.e+" ";
+});
+document.getElementById("result").textContent="نتيجتك: "+score+" من "+questions.length+" — أجبت عن "+answered+" أسئلة. "+details;
+}
+</script>
+</body>
+  </html>
+  
