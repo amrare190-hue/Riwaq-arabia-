@@ -3,132 +3,413 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#103b32">
 <title>رِواق العربية | الأستاذ محمد هاشم</title>
 <style>
+:root {
+  --green:#103b32;
+  --green2:#1c5747;
+  --gold:#d8b66a;
+  --cream:#faf7ef;
+  --ink:#24332e;
+  --muted:#6d7b74;
+  --white:#fff;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#0d1714;color:#f7f0df;font-family:Arial,sans-serif;line-height:1.9}
-header{text-align:center;padding:38px 16px;background:linear-gradient(140deg,#183d30,#0d1714);border-bottom:1px solid #b99a55}
-h1,h2,h3{color:#dfc17a}
-header h1{font-size:35px;margin:0}
-header p{margin:5px;color:#e6d9b9}
-main{max-width:850px;margin:auto;padding:20px}
-section,.card{background:#15231e;border:1px solid #34483b;border-radius:16px;padding:18px;margin:16px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
-button,.btn{background:#c6a85e;color:#142019;border:0;border-radius:10px;padding:11px 15px;font-size:16px;cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block;margin:4px}
-button:hover,.btn:hover{background:#e3ca89}
-button.secondary{background:#263c32;color:#f7f0df;border:1px solid #9b854e}
-.hidden{display:none}
-video,iframe{width:100%;border:0;border-radius:12px;aspect-ratio:16/9}
-.question{border-top:1px solid #34483b;padding:12px 0}
-.option{display:block;width:100%;text-align:right;background:#22362d;color:#fff;border:1px solid #455a4b;margin:7px 0}
-#result{font-weight:bold;color:#e2c878}
-footer{text-align:center;color:#c7bda5;padding:25px}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:Tahoma,Arial,sans-serif;line-height:1.85
+}
+header{
+  background:linear-gradient(140deg,#0b2b25,#1b5142);
+  color:white;padding:34px 18px 28px;text-align:center;
+  border-bottom:4px solid var(--gold)
+}
+.brand{font-size:13px;letter-spacing:2px;color:#ead9a7}
+h1{font-size:clamp(32px,7vw,48px);margin:8px 0 0}
+header p{margin:5px 0;color:#e6eee9}
+.hero-note{font-size:14px;color:#e7d9b3;margin-top:15px}
+main{width:min(100% - 28px,920px);margin:24px auto 45px}
+.welcome{
+  background:white;border:1px solid #e8e0ce;border-radius:18px;
+  padding:20px;margin-bottom:20px
+}
+.welcome h2{margin:0 0 5px;color:var(--green);font-size:22px}
+.welcome p{margin:0;color:var(--muted)}
+.stats{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}
+.stat{background:#f5f0e4;border-radius:10px;padding:7px 12px;font-size:13px}
+.search-wrap{margin:20px 0}
+label{display:block;font-weight:bold;margin-bottom:6px}
+input[type="search"]{
+  width:100%;padding:14px;border:1px solid #d5d9d2;border-radius:12px;
+  background:white;font:inherit;outline-color:var(--green2)
+}
+.section-title{color:var(--green);font-size:23px;margin:22px 0 10px}
+.lesson{
+  background:white;border:1px solid #e6e1d5;border-radius:17px;
+  margin:14px 0;overflow:hidden;box-shadow:0 3px 12px #163c3210
+}
+.lesson-head{padding:17px 17px 10px}
+.lesson-number{color:#8a6a2d;font-size:12px;font-weight:bold}
+.lesson h3{font-size:19px;color:var(--green);margin:2px 0}
+.lesson-desc{font-size:14px;color:var(--muted);margin:0}
+.lesson-body{padding:0 17px 18px}
+.video{
+  width:100%;aspect-ratio:16/9;border:0;border-radius:12px;
+  background:#132c25;margin:10px 0
+}
+.summary{
+  background:#f7f4eb;border-right:4px solid var(--gold);
+  border-radius:9px;padding:12px 14px;margin:12px 0
+}
+.summary h4,.quiz h4{margin:0 0 6px;color:var(--green)}
+.summary p{margin:4px 0}
+.summary ul{padding-right:22px;margin:6px 0}
+.quiz{border-top:1px solid #ece7dc;padding-top:13px;margin-top:14px}
+.question{font-weight:bold;margin:10px 0 7px}
+.answers{display:grid;gap:7px}
+.answer{
+  display:block;border:1px solid #dfe4dd;border-radius:10px;
+  padding:9px 11px;cursor:pointer;background:#fff
+}
+.answer:has(input:checked){border-color:var(--green2);background:#edf5ef}
+.answer input{margin-left:7px;accent-color:var(--green2)}
+.check-btn,.youtube-btn{
+  display:inline-block;border:0;border-radius:10px;padding:10px 16px;
+  font:inherit;font-weight:bold;cursor:pointer;text-decoration:none
+}
+.check-btn{background:var(--green);color:white;margin-top:12px}
+.youtube-btn{background:#f2e7c9;color:#4b3a18;font-size:14px}
+.feedback{margin-top:10px;font-weight:bold}
+.correct{color:#17653e}
+.incorrect{color:#9b3328}
+.result{font-size:14px;color:var(--muted);margin-top:5px}
+.empty{display:none;background:white;padding:18px;border-radius:12px}
+footer{
+  background:#0b2b25;color:#e9e4d7;text-align:center;padding:22px 15px;
+  font-size:13px
+}
+footer strong{color:var(--gold)}
+.small-note{font-size:12px;color:var(--muted);margin-top:14px}
+@media(min-width:700px){
+  .lesson-body{padding:0 22px 22px}
+  .lesson-head{padding:20px 22px 10px}
+}
 </style>
 </head>
 <body>
 <header>
-<div>✦ لغتنا هويتنا ✦</div>
-<h1>رِواق العربية</h1>
-<p>منصة الأستاذ محمد هاشم التعليمية</p>
-<p>نتعلّم العربية فهمًا، ونتذوّقها بيانًا وأدبًا.</p>
+  <div class="brand">مَكْتَبَةُ اللُّغَةِ العَرَبِيَّةِ</div>
+  <h1>رِواق العربية</h1>
+  <p>منصة الأستاذ محمد هاشم التعليمية</p>
+  <div class="hero-note">نتعلّم القاعدة، نفهم المثال، ثم نطبّق بأنفسنا.</div>
 </header>
+
 <main>
-<section id="home">
-<h2>أهلًا بك في رِواق العربية</h2>
-<p>رحلتك لفهم اللغة العربية تبدأ من هنا. اختَر مرحلتك الدراسية، ثم صفّك ومادتك، وتعلّم خطوة بخطوة.</p>
-<div class="grid">
-<button onclick="showStage('prep')">المرحلة الإعدادية</button>
-<button onclick="showStage('sec')">المرحلة الثانوية</button>
-</div>
-</section>
+  <section class="welcome">
+    <h2>أهلًا بك في رِواق العربية 🌿</h2>
+    <p>مكتبة مبسّطة لدروس النحو والصرف. اختَر درسًا، شاهد شرحه، اقرأ الملخص، ثم اختبر فهمك بنفسك.</p>
+    <div class="stats">
+      <span class="stat">📚 5 دروس متاحة</span>
+      <span class="stat">✍️ اختبارات تفاعلية</span>
+      <span class="stat">✓ تصحيح فوري</span>
+    </div>
+  </section>
 
-<section id="prep" class="hidden">
-<h2>المرحلة الإعدادية</h2>
-<div class="grid">
-<button class="secondary" onclick="showGrade('prep','الأول الإعدادي')">الأول الإعدادي</button>
-<button class="secondary" onclick="showGrade('prep','الثاني الإعدادي')">الثاني الإعدادي</button>
-<button class="secondary" onclick="showGrade('prep','الثالث الإعدادي')">الثالث الإعدادي</button>
-</div>
-<div id="prep-grade"></div>
-</section>
+  <div class="search-wrap">
+    <label for="search">ابحث عن درس</label>
+    <input id="search" type="search" placeholder="مثال: كان، اسم المفعول، المعرب..." autocomplete="off">
+  </div>
 
-<section id="sec" class="hidden">
-<h2>المرحلة الثانوية</h2>
-<div class="grid">
-<button class="secondary" onclick="showGrade('sec','الأول الثانوي')">الأول الثانوي</button>
-<button class="secondary" onclick="showGrade('sec','الثاني الثانوي')">الثاني الثانوي</button>
-<button class="secondary" onclick="showGrade('sec','الثالث الثانوي')">الثالث الثانوي</button>
-</div>
-<div id="sec-grade"></div>
-</section>
+  <h2 class="section-title">دروس النحو والصرف</h2>
+  <p style="color:#6d7b74;margin-top:-8px">شاهد الفيديو، وراجع أهم النقاط، ثم أجب عن الأسئلة.</p>
 
-<section id="lesson" class="hidden">
-<button class="secondary" onclick="backStages()">↩ رجوع</button>
-<h2 id="lesson-title">درس نموذجي: المبتدأ والخبر</h2>
-<p id="grade-name"></p>
-<h3>فيديو الدرس</h3>
-<p>شاهد شرح الأستاذ محمد هاشم على يوتيوب:</p>
-<a class="btn" href="https://youtu.be/OhgY0z9jics" target="_blank" rel="noopener">مشاهدة الدرس على يوتيوب</a>
-<h3>ملخص الدرس: المبتدأ والخبر</h3>
-<ul>
-<li>الجملة الاسمية تبدأ غالبًا باسم، وتتكوّن في أصلها من مبتدأ وخبر.</li>
-<li>المبتدأ اسم مرفوع نتحدث عنه، والخبر يتمّم المعنى.</li>
-<li>مثال: «العلمُ نورٌ»؛ العلمُ مبتدأ، ونورٌ خبر.</li>
-<li>قد يأتي الخبر مفردًا، أو جملة، أو شبه جملة.</li>
-<li>مثال: «الطالبُ يذاكرُ»؛ جملة «يذاكر» في محل رفع خبر.</li>
-<li>مثال: «الكتابُ على المكتبِ»؛ شبه الجملة متعلّق بخبر محذوف.</li>
-</ul>
-<h3>اختبر فهمك</h3>
-<p>اختر الإجابة الصحيحة لكل سؤال ثم اضغط «تصحيح الإجابات».</p>
-<div id="quiz"></div>
-<button onclick="checkQuiz()">تصحيح الإجابات</button>
-<p id="result"></p>
-</section>
-<section>
-<h2>رسالة المنصة</h2>
-<p>رِواق العربية مساحة للتعلّم والمراجعة، تجمع بين الشرح والتطبيق؛ لتكون اللغة العربية أقرب إلى الفهم والإتقان.</p>
-</section>
+  <section id="lessons">
+
+    <article class="lesson" data-search="كان التامة الناقصة كان وأخواتها">
+      <div class="lesson-head">
+        <div class="lesson-number">الدرس الأول</div>
+        <h3>كان التامة والناقصة</h3>
+        <p class="lesson-desc">تعرّف الفرق بين كان التي تحتاج إلى خبر وكان التي تكتفي بمرفوعها.</p>
+      </div>
+      <div class="lesson-body">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/msf_9YPweMk" title="كان التامة والناقصة" loading="lazy" allowfullscreen></iframe>
+        <a class="youtube-btn" href="https://youtu.be/msf_9YPweMk" target="_blank" rel="noopener">فتح الفيديو على يوتيوب ↗</a>
+        <div class="summary">
+          <h4>📖 ملخص سريع</h4>
+          <ul>
+            <li><strong>كان الناقصة:</strong> تدخل على المبتدأ والخبر، فترفع الأول اسمًا لها وتنصب الثاني خبرًا لها. مثال: كان الجوُّ معتدلًا.</li>
+            <li><strong>كان التامة:</strong> تكتفي بمرفوعها، ويكون معناها تامًا مثل: حدث أو وُجد. مثال: كان أمرٌ عجيبٌ، أي حدث أمر عجيب.</li>
+            <li>للتفريق بينهما، انظر إلى المعنى: هل اكتملت الجملة بمرفوع كان، أم احتاجت إلى خبر يتمم المعنى؟</li>
+          </ul>
+          <p class="small-note">ملخص للمراجعة، وليس بديلًا عن شرح الدرس كاملًا.</p>
+        </div>
+        <div class="quiz" data-answers="1,0,1">
+          <h4>📝 اختبر فهمك</h4>
+          <div class="question">1. في جملة «كان الجوُّ جميلًا»، كلمة «جميلًا» هي:</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q1" value="0"> اسم كان</label>
+            <label class="answer"><input type="radio" name="q1" value="1"> خبر كان</label>
+            <label class="answer"><input type="radio" name="q1" value="2"> فاعل</label>
+          </div>
+          <div class="question">2. كان الناقصة ترفع اسمها وتنصب خبرها.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q2" value="0"> صح</label>
+            <label class="answer"><input type="radio" name="q2" value="1"> خطأ</label>
+          </div>
+          <div class="question">3. ما الفكرة الأساسية للتمييز بين كان التامة والناقصة؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q3" value="0"> عدد حروف الجملة</label>
+            <label class="answer"><input type="radio" name="q3" value="1"> اكتمال المعنى وحاجة الجملة إلى خبر</label>
+            <label class="answer"><input type="radio" name="q3" value="2"> وجود حرف جر</label>
+          </div>
+          <button class="check-btn" type="button">صحّح إجاباتي</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="lesson" data-search="اسم المفعول الفعل الثلاثي صرف">
+      <div class="lesson-head">
+        <div class="lesson-number">الدرس الثاني</div>
+        <h3>اسم المفعول من الفعل الثلاثي</h3>
+        <p class="lesson-desc">تعلّم صياغة اسم المفعول من الفعل الثلاثي بطريقة سهلة.</p>
+      </div>
+      <div class="lesson-body">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/TZ9-4oT1Uzk" title="اسم المفعول من الفعل الثلاثي" loading="lazy" allowfullscreen></iframe>
+        <a class="youtube-btn" href="https://youtu.be/TZ9-4oT1Uzk" target="_blank" rel="noopener">فتح الفيديو على يوتيوب ↗</a>
+        <div class="summary">
+          <h4>📖 ملخص سريع</h4>
+          <ul>
+            <li>اسم المفعول اسم مشتق يدل على من وقع عليه الفعل.</li>
+            <li>يُصاغ غالبًا من الفعل الثلاثي المتعدي على وزن <strong>مفعول</strong>.</li>
+            <li>أمثلة: كتب ← مكتوب، فهم ← مفهوم، حفظ ← محفوظ.</li>
+            <li>بعض الأفعال لها صيغ تتغير عن القاعدة المعتادة؛ لذا يُرجع إلى شرحها وأمثلتها.</li>
+          </ul>
+        </div>
+        <div class="quiz" data-answers="1,0,2">
+          <h4>📝 اختبر فهمك</h4>
+          <div class="question">1. ما اسم المفعول من الفعل «كتب»؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q4" value="0"> كاتب</label>
+            <label class="answer"><input type="radio" name="q4" value="1"> مكتوب</label>
+            <label class="answer"><input type="radio" name="q4" value="2"> كتاب</label>
+          </div>
+          <div class="question">2. اسم المفعول يدل على من وقع عليه الفعل.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q5" value="0"> صح</label>
+            <label class="answer"><input type="radio" name="q5" value="1"> خطأ</label>
+          </div>
+          <div class="question">3. ما الوزن الشائع لاسم المفعول من الفعل الثلاثي؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q6" value="0"> فاعل</label>
+            <label class="answer"><input type="radio" name="q6" value="1"> فعيل</label>
+            <label class="answer"><input type="radio" name="q6" value="2"> مفعول</label>
+          </div>
+          <button class="check-btn" type="button">صحّح إجاباتي</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="lesson" data-search="المجرد المزيد الفعل الثلاثي الرباعي الصرف">
+      <div class="lesson-head">
+        <div class="lesson-number">الدرس الثالث</div>
+        <h3>المجرّد والمزيد</h3>
+        <p class="lesson-desc">ميّز بين الفعل الذي تتكوّن حروفه من الأصل فقط والفعل الذي زيد على أصوله.</p>
+      </div>
+      <div class="lesson-body">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/4uBcK9xYytU" title="المجرد والمزيد" loading="lazy" allowfullscreen></iframe>
+        <a class="youtube-btn" href="https://youtu.be/4uBcK9xYytU" target="_blank" rel="noopener">فتح الفيديو على يوتيوب ↗</a>
+        <div class="summary">
+          <h4>📖 ملخص سريع</h4>
+          <ul>
+            <li><strong>الفعل المجرّد:</strong> حروفه كلها أصلية، مثل: كتب، دحرج.</li>
+            <li><strong>الفعل المزيد:</strong> زيد على حروفه الأصلية حرف أو أكثر، مثل: أكرم، استخرج.</li>
+            <li>الأفعال المجرّدة قد تكون ثلاثية أو رباعية، وكذلك المزيد له أوزان مختلفة.</li>
+            <li>لا نحكم على الحرف بأنه زائد لمجرد وجوده في الكلمة؛ نحتاج إلى معرفة أصل الفعل ووزنه.</li>
+          </ul>
+        </div>
+        <div class="quiz" data-answers="0,1,0">
+          <h4>📝 اختبر فهمك</h4>
+          <div class="question">1. الفعل «كتب» هو فعل:</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q7" value="0"> مجرد</label>
+            <label class="answer"><input type="radio" name="q7" value="1"> مزيد</label>
+          </div>
+          <div class="question">2. الفعل «استخرج» من الأفعال المزيدة.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q8" value="0"> خطأ</label>
+            <label class="answer"><input type="radio" name="q8" value="1"> صح</label>
+          </div>
+          <div class="question">3. ما المقصود بالفعل المجرّد؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q9" value="0"> فعل حروفه كلها أصلية</label>
+            <label class="answer"><input type="radio" name="q9" value="1"> فعل يبدأ بهمزة دائمًا</label>
+            <label class="answer"><input type="radio" name="q9" value="2"> فعل لا يدل على حدث</label>
+          </div>
+          <button class="check-btn" type="button">صحّح إجاباتي</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="lesson" data-search="المعرب المبني الإعراب البناء أسماء أفعال حروف">
+      <div class="lesson-head">
+        <div class="lesson-number">الدرس الرابع</div>
+        <h3>المعرب والمبني</h3>
+        <p class="lesson-desc">افهم الفرق بين تغيّر آخر الكلمة وثباته.</p>
+      </div>
+      <div class="lesson-body">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/PWNuWQ9G8gI" title="المعرب والمبني" loading="lazy" allowfullscreen></iframe>
+        <a class="youtube-btn" href="https://youtu.be/PWNuWQ9G8gI" target="_blank" rel="noopener">فتح الفيديو على يوتيوب ↗</a>
+        <div class="summary">
+          <h4>📖 ملخص سريع</h4>
+          <ul>
+            <li><strong>المعرب:</strong> يتغيّر آخره بحسب موقعه في الجملة، مثل: حضر محمدٌ، رأيت محمدًا، سلمت على محمدٍ.</li>
+            <li><strong>المبني:</strong> يلزم آخره حالة واحدة، مثل: هذا، الذي، ومَن الاستفهامية.</li>
+            <li>الأصل في الأسماء الإعراب، وتوجد أسماء مبنية. والحروف كلها مبنية، والأفعال منها معرب ومنها مبني.</li>
+          </ul>
+        </div>
+        <div class="quiz" data-answers="1,0,1">
+          <h4>📝 اختبر فهمك</h4>
+          <div class="question">1. الكلمة المعربة يتغيّر آخرها بحسب موقعها في الجملة.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q10" value="0"> خطأ</label>
+            <label class="answer"><input type="radio" name="q10" value="1"> صح</label>
+          </div>
+          <div class="question">2. أي الكلمات التالية مبنية؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q11" value="0"> هذا</label>
+            <label class="answer"><input type="radio" name="q11" value="1"> محمد</label>
+            <label class="answer"><input type="radio" name="q11" value="2"> كتاب</label>
+          </div>
+          <div class="question">3. الحروف في اللغة العربية مبنية.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q12" value="0"> خطأ</label>
+            <label class="answer"><input type="radio" name="q12" value="1"> صح</label>
+          </div>
+          <button class="check-btn" type="button">صحّح إجاباتي</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="lesson" data-search="المبتدأ الخبر الجملة الاسمية">
+      <div class="lesson-head">
+        <div class="lesson-number">الدرس الخامس</div>
+        <h3>المبتدأ والخبر</h3>
+        <p class="lesson-desc">راجع ركني الجملة الاسمية وتعرّف كيف يكتمل معناها.</p>
+      </div>
+      <div class="lesson-body">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/OhgY0z9jics" title="المبتدأ والخبر" loading="lazy" allowfullscreen></iframe>
+        <a class="youtube-btn" href="https://youtu.be/OhgY0z9jics" target="_blank" rel="noopener">فتح الفيديو على يوتيوب ↗</a>
+        <div class="summary">
+          <h4>📖 ملخص سريع</h4>
+          <ul>
+            <li>الجملة الاسمية تبدأ غالبًا باسم، وتتكوّن في صورتها الأساسية من مبتدأ وخبر.</li>
+            <li><strong>المبتدأ:</strong> الاسم الذي نتحدث عنه، وهو مرفوع في الأصل.</li>
+            <li><strong>الخبر:</strong> ما نخبر به عن المبتدأ، وهو مرفوع في الأصل.</li>
+            <li>مثال: العلمُ نافعٌ. العلمُ: مبتدأ مرفوع، ونافعٌ: خبر مرفوع.</li>
+          </ul>
+        </div>
+        <div class="quiz" data-answers="1,0,1">
+          <h4>📝 اختبر فهمك</h4>
+          <div class="question">1. في جملة «السماءُ صافيةٌ»، ما الخبر؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q13" value="0"> السماءُ</label>
+            <label class="answer"><input type="radio" name="q13" value="1"> صافيةٌ</label>
+            <label class="answer"><input type="radio" name="q13" value="2"> الجملة كلها مبتدأ</label>
+          </div>
+          <div class="question">2. المبتدأ والخبر مرفوعان في الأصل.</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q14" value="0"> صح</label>
+            <label class="answer"><input type="radio" name="q14" value="1"> خطأ</label>
+          </div>
+          <div class="question">3. ما وظيفة الخبر؟</div>
+          <div class="answers">
+            <label class="answer"><input type="radio" name="q15" value="0"> جرّ المبتدأ دائمًا</label>
+            <label class="answer"><input type="radio" name="q15" value="1"> إتمام المعنى والإخبار عن المبتدأ</label>
+            <label class="answer"><input type="radio" name="q15" value="2"> تحويل الجملة إلى فعلية</label>
+          </div>
+          <button class="check-btn" type="button">صحّح إجاباتي</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <div id="empty" class="empty">مفيش درس مطابق للبحث. جرّب كلمة تانية.</div>
+  <p class="small-note">تنبيه: الملخصات والأسئلة مواد مراجعة أولية أُعدّت لدعم التعلّم، ويُفضّل مراجعتها مع الأستاذ قبل اعتماد المنصة رسميًا.</p>
 </main>
-<footer>رِواق العربية · منصة الأستاذ محمد هاشم التعليمية</footer>
+
+<footer>
+  <strong>رِواق العربية</strong><br>
+  منصة تعليمية محبة للغة العربية<br>
+  <span>إعداد أولي لمحبة العلم وأهله 🌿</span>
+</footer>
+
 <script>
-const questions=[
-{q:"في جملة «العلمُ نورٌ»، ما المبتدأ؟",a:["نور","العلم","الجملة كلها"],c:1,e:"العلمُ هو الاسم الذي نتحدث عنه، فهو المبتدأ."},
-{q:"ما الخبر في جملة «السماءُ صافيةٌ»؟",a:["السماء","صافية","السماء صافية"],c:1,e:"صافيةٌ خبر المبتدأ السماءُ."},
-{q:"نوع الخبر في «الطالبُ يذاكرُ»؟",a:["مفرد","جملة فعلية","شبه جملة"],c:1,e:"يذاكرُ جملة فعلية في محل رفع خبر."},
-{q:"نوع الخبر في «الكتابُ على المكتبِ»؟",a:["مفرد","جملة اسمية","شبه جملة"],c:2,e:"على المكتب شبه جملة متعلّقة بخبر محذوف."},
-{q:"الأصل في المبتدأ والخبر أن يكونا:",a:["مرفوعين","منصوبين","مجرورين"],c:0,e:"الأصل في المبتدأ والخبر الرفع."}
-];
-const quiz=document.getElementById("quiz");
-questions.forEach((q,i)=>{
-let d=document.createElement("div");d.className="question";
-d.innerHTML="<strong>"+(i+1)+". "+q.q+"</strong>";
-q.a.forEach((a,j)=>{d.innerHTML+='<label class="option"><input type="radio" name="q'+i+'" value="'+j+'"> '+a+'</label>'});
-quiz.appendChild(d);
+const search = document.getElementById('search');
+const lessons = [...document.querySelectorAll('.lesson')];
+const empty = document.getElementById('empty');
+
+search.addEventListener('input', () => {
+  const term = search.value.trim().toLowerCase();
+  let shown = 0;
+  lessons.forEach(lesson => {
+    const text = (lesson.dataset.search + ' ' + lesson.innerText).toLowerCase();
+    const match = text.includes(term);
+    lesson.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+  empty.style.display = shown ? 'none' : 'block';
 });
-function showStage(id){document.getElementById("prep").classList.add("hidden");document.getElementById("sec").classList.add("hidden");document.getElementById("lesson").classList.add("hidden");document.getElementById(id).classList.remove("hidden");document.getElementById(id).scrollIntoView({behavior:"smooth"});}
-function showGrade(stage,grade){
-let box=document.getElementById(stage+"-grade");
-box.innerHTML="<h3>"+grade+"</h3><p>اختر المادة لعرض الدرس النموذجي المتاح حاليًا.</p><div class='grid'><button onclick=\"openLesson('النحو','"+grade+"')\">النحو</button><button onclick=\"openLesson('البلاغة','"+grade+"')\">البلاغة</button><button onclick=\"openLesson('الأدب','"+grade+"')\">الأدب</button></div>";
-box.scrollIntoView({behavior:"smooth"});
-}
-function openLesson(subject,grade){
-document.getElementById("lesson-title").textContent=subject==="النحو"?"درس نموذجي: المبتدأ والخبر":subject+" — قريبًا";
-document.getElementById("grade-name").textContent="الصف: "+grade+" · المادة: "+subject;
-document.getElementById("lesson").classList.remove("hidden");
-document.getElementById("lesson").scrollIntoView({behavior:"smooth"});
-}
-function backStages(){document.getElementById("lesson").classList.add("hidden");document.getElementById("home").scrollIntoView({behavior:"smooth"});}
-function checkQuiz(){
-let score=0,answered=0,details="";
-questions.forEach((q,i)=>{
-let selected=document.querySelector('input[name="q'+i+'"]:checked');
-if(selected){answered++;if(Number(selected.value)===q.c)score++;}
-details+=(i+1)+". "+q.e+" ";
+
+document.querySelectorAll('.quiz').forEach(quiz => {
+  const button = quiz.querySelector('.check-btn');
+  button.addEventListener('click', () => {
+    const correct = quiz.dataset.answers.split(',').map(Number);
+    const questions = [...quiz.querySelectorAll('.question')];
+    let score = 0;
+    let answered = 0;
+
+    questions.forEach((question, index) => {
+      const selected = quiz.querySelector('input[name="q' + (quizQuestionStart(quiz) + index) + '"]:checked');
+      if (selected) {
+        answered++;
+        if (Number(selected.value) === correct[index]) score++;
+      }
+    });
+
+    const feedback = quiz.querySelector('.feedback');
+    if (answered < correct.length) {
+      feedback.className = 'feedback incorrect';
+      feedback.textContent = 'جاوب عن كل الأسئلة الأول، وبعدها اضغط على التصحيح 😊';
+      return;
+    }
+
+    feedback.className = 'feedback ' + (score === correct.length ? 'correct' : 'incorrect');
+    feedback.textContent = score === correct.length
+      ? 'ممتاز! إجاباتك كلها صحيحة 🎉'
+      : 'نتيجتك ' + score + ' من ' + correct.length + '. راجع الملخص وحاول مرة تانية.';
+    let result = quiz.querySelector('.result');
+    if (!result) {
+      result = document.createElement('div');
+      result.className = 'result';
+      feedback.after(result);
+    }
+    result.textContent = 'الدرجة: ' + score + ' / ' + correct.length;
+  });
 });
-document.getElementById("result").textContent="نتيجتك: "+score+" من "+questions.length+" — أجبت عن "+answered+" أسئلة. "+details;
+
+function quizQuestionStart(quiz) {
+  const all = [...document.querySelectorAll('.quiz')];
+  const starts = [1, 4, 7, 10, 13];
+  return starts[all.indexOf(quiz)];
 }
 </script>
 </body>
   </html>
-  
+          
